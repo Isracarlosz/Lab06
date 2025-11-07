@@ -1,0 +1,87 @@
+Aplicación de Descarga de Videos (Laboratorio 06)
+
+Esta es una aplicación web simple creada con Python y Flask que cumple con los requisitos del Laboratorio 06. La aplicación permite a los usuarios pegar una URL de un video de YouTube, TikTok o Instagram y descargarlo en un formato MP4 compatible.
+
+Características
+
+Interfaz web simple: Un formulario para ingresar la URL y una sección de resultados.
+
+Soporte Multiplataforma: Funciona con URLs de YouTube, TikTok e Instagram (publicaciones públicas).
+
+Formato Compatible: Descarga los videos en un formato MP4 estándar (códec H.264/AAC) para asegurar la máxima compatibilidad y evitar errores de códec.
+
+Lógica del Servidor:
+
+El usuario envía una URL (POST).
+
+El servidor usa yt-dlp para descargar el video físicamente a una carpeta local (/descargas).
+
+El servidor muestra los detalles del video (título, miniatura) y un enlace de descarga.
+
+El enlace de descarga apunta a una ruta local (/download/<archivo>) que sirve el archivo al usuario, forzando la descarga.
+
+Tecnologías Utilizadas
+
+Python: Lenguaje principal.
+
+Flask: Micro-framework web para manejar las peticiones GET/POST y servir el HTML.
+
+yt-dlp: La biblioteca clave para extraer la información y descargar los videos.
+
+HTML/CSS: Para la estructura y el estilo de la página web.
+
+Instalación y Ejecución Local
+
+Para ejecutar este proyecto en tu máquina local, sigue estos pasos:
+
+Clonar el repositorio:
+
+git clone [URL-DE-TU-REPOSITORIO]
+cd [NOMBRE-DEL-REPOSITORIO]
+
+
+Crear un entorno virtual:
+
+python -m venv venv
+
+
+Activar el entorno virtual:
+
+En Windows (PowerShell):
+
+# Si la ejecución de scripts está deshabilitada, ejecuta esto primero:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+.\venv\Scripts\Activate.ps1
+
+
+En macOS/Linux:
+
+source venv/bin/activate
+
+
+Instalar las dependencias:
+(Asegúrate de tener el archivo requirements.txt en el directorio)
+
+pip install -r requirements.txt
+
+
+Ejecutar la aplicación Flask:
+
+python app.py
+
+
+Abrir en el navegador:
+Abre tu navegador web y visita http://127.0.0.1:5000.
+
+Estructura de Archivos
+
+/tu-proyecto
+│
+├── app.py              # El servidor principal de Flask
+├── requirements.txt    # Lista de dependencias de Python
+│
+├── /descargas/         # (Se crea automáticamente) Aquí se guardan los videos
+│
+└── /templates/
+    └── downloader.html   # El archivo HTML que ve el usuario
