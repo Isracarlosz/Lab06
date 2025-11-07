@@ -8,8 +8,6 @@ Interfaz web simple: Un formulario para ingresar la URL y una sección de result
 
 Soporte Multiplataforma: Funciona con URLs de YouTube, TikTok e Instagram (publicaciones públicas).
 
-Formato Compatible: Descarga los videos en un formato MP4 estándar (códec H.264/AAC) para asegurar la máxima compatibilidad y evitar errores de códec.
-
 Lógica del Servidor:
 
 El usuario envía una URL (POST).
@@ -85,3 +83,4 @@ Estructura de Archivos
 │
 └── /templates/
     └── downloader.html   # El archivo HTML que ve el usuario
+
