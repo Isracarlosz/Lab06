@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Descargador de Videos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { 
+            max-width: 700px; 
+            margin: auto; 
+            padding: 25px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        form { display: flex; margin-bottom: 20px; }
+        input[type="url"] { flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px 0 0 5px; }
+        button { padding: 10px 15px; border: none; background-color: #007bff; color: white; border-radius: 0 5px 5px 0; cursor: pointer; }
+        .error { color: #D8000C; background-color: #FFD2D2; padding: 10px; border-radius: 5px; }
+        .results { margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px; }
+        .results img { max-width: 100%; border-radius: 8px; margin-bottom: 15px; }
+        .results a { 
+            display: inline-block; 
+            background-color: #28a745; 
+            color: white; 
+            padding: 12px 20px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: bold;
+            text-align: center;
+        }
+        .results a:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Descargador de Videos</h1>
+        <p>Pega una URL de YouTube, TikTok o Instagram para obtener el enlace de descarga.</p>
+        
+        <form method="POST">
+            <label for="url" class="visually-hidden">URL del Video:</label>
+            <input type="url" id="url" name="url" placeholder="https://www.youtube.com/..." required>
+            <button type="submit">Procesar</button>
+        </form>
+
+        <!-- Sección de Resultados -->
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+        
+        {% if video_info %}
+            <div class="results">
+                <h3>{{ video_info.title }}</h3>
+                <img src="{{ video_info.thumbnail }}" alt="Miniatura de {{ video_info.title }}">
+                <p>
+                    <a href="{{ url_for('download_file', filename=video_info.filename) }}" download>
+                        ¡Clic aquí para descargar!
+                    </a>
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

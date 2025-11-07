@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscador de Pokémon</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        .form-container, .results { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        .sprites img { width: 96px; height: 96px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buscador de Pokémon</h1>
+
+        <div class="form-container">
+            <form method="POST">
+                <label for="pokemon_name">Nombre del Pokémon:</label>
+                <input type="text" id="pokemon_name" name="pokemon_name" required>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+        
+        {% if pokemon %}
+            <div class="results">
+                <h2>{{ pokemon.name }}</h2>
+                
+                <h3>Tipos:</h3>
+                <ul>
+                    {% for type in pokemon.types %}
+                        <li>{{ type }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Movimientos:</h3>
+                <ul>
+                    {% for move in pokemon.moves %}
+                        <li>{{ move }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Imágenes (2 frente, 2 espalda):</h3>
+                <div class="sprites">
+                    <img src="{{ pokemon.sprites[0] }}" alt="{{ pokemon.name }} (Frente)">
+                    <img src="{{ pokemon.sprites[2] }}" alt="{{ pokemon.name }} (Frente Shiny)">
+                    <img src="{{ pokemon.sprites[1] }}" alt="{{ pokemon.name }} (Espalda)">
+                    <img src="{{ pokemon.sprites[3] }}" alt="{{ pokemon.name }} (Espalda Shiny)">
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
